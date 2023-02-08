@@ -1,0 +1,32 @@
+body {
+    background-image: url(photographer.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+@media (max-width: 700px) {
+    header h1 {
+        text-align: center;
+    }
+}
+
+header {
+    justify-content: center;
+    display: flex;
+}
+
+header h1 {
+    color: white;
+    font-size: 4em;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+body, input, select, option, button {
+    font-family: "Oleo Script";
+    font-size: 24px;
+}
