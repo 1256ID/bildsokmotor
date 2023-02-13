@@ -18,7 +18,8 @@ header {
 
 header h1 {
     color: white;
-    font-size: 4em;
+    font-family: 'Coustard';
+    font-size: 3em;
 }
 
 .search {
