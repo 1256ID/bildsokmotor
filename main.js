@@ -1,6 +1,5 @@
 let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
-let gallery = document.querySelector('#navButtons');
 
 let previousPage = false
 let nextPage = false;
