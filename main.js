@@ -12,7 +12,12 @@ form.onsubmit = async event => {
     let response = await fetch(url);
     let json = await response.json();
 
+    let preview = json.preview;
+    let id = json.id;
+    let listItem = document.createElement('li');
 
+
+    imageList.append(id, preview);
 
 
     form.search.value = "";
