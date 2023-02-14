@@ -2,6 +2,9 @@ let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
 let gallery = document.querySelector('#navButtons');
 
+let previousPage = false
+let nextPage = false;
+
 form.onsubmit = async event => {
     event.preventDefault();
 
@@ -25,7 +28,11 @@ form.onsubmit = async event => {
         imageList.appendChild(li);
     }
 
+    imageList.append(id, preview);
+
+
     form.search.value = "";
     form.color.value = "";
 
+    nextPage = true;
 };
