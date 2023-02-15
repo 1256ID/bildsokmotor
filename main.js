@@ -11,6 +11,8 @@ form.onsubmit = async event => {
     let color = form.color.value;
     let pageNr = 1;
 
+    empty(imagelist);
+
     let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10" + "&page=" + pageNr;
 
     let response = await fetch(url);
@@ -35,3 +37,9 @@ form.onsubmit = async event => {
 
     nextPage = true;
 };
+
+function empty(element) {
+    while(element.firstElementChild) {
+       element.firstElementChild.remove();
+    }
+  }
