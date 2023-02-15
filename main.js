@@ -94,6 +94,10 @@ form.onsubmit = async event => {
     };
 }
 
+function createGallery() {
+    
+}
+
 function empty(element) {
     while (element.firstElementChild) {
         element.firstElementChild.remove();
