@@ -47,6 +47,7 @@ form.onsubmit = async event => {
 
         buttons.appendChild(navButtonPrevious);
         buttons.appendChild(navButtonNext);
+        navButtonPrevious.disabled = true;
 
         navButtonNext.onclick = async event => {
             event.preventDefault();
@@ -68,6 +69,7 @@ form.onsubmit = async event => {
                 li.appendChild(img);
                 imageList.appendChild(li);
             }
+            navButtonPrevious.disabled = false;
         
         };
 
@@ -90,6 +92,10 @@ form.onsubmit = async event => {
         
                 li.appendChild(img);
                 imageList.appendChild(li);
+            }
+
+            if (pageNr < 2) {
+                navButtonPrevious.disabled = true;
             }
         
         }
