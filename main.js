@@ -7,21 +7,10 @@ let nextPage = false;
 form.onsubmit = async event => {
     event.preventDefault();
 
-   
-    
-
     let search = form.search.value; 
-    
-  
-    
-    
-    
     
     let color = form.color.value;
     let pageNr = 1;
-    
-
-
     
     /*
     empty(imagelist);
@@ -32,12 +21,6 @@ form.onsubmit = async event => {
     let response = await fetch(url);
     let json = await response.json();
 
-    
-    
-
-   
-
-    
     for (let hit of json.hits) {
 
         let img = document.createElement('img');
@@ -49,8 +32,6 @@ form.onsubmit = async event => {
     }
 
     imageList.append(id, preview);
-
-    
 
     form.search.value = "";
     form.color.value = "";
