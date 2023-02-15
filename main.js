@@ -12,7 +12,7 @@ form.onsubmit = async event => {
     
 
     empty(imageList);
-
+    empty(buttons);
 
     let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10" + "&page=" + pageNr;
 
