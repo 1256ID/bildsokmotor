@@ -5,11 +5,11 @@ let buttons = document.querySelector('.navButtons');
 form.onsubmit = async event => {
     event.preventDefault();
 
-    let search = form.search.value; 
-     
+    let search = form.search.value;
+
     let color = form.color.value;
     let pageNr = 1;
-    
+
 
     empty(imageList);
     empty(buttons);
@@ -50,7 +50,8 @@ form.onsubmit = async event => {
             let json = await response.json();
 
             importResults(json);
-        
+
+            navButtonPrevious.disabled = false;
         };
 
         navButtonPrevious.onclick = async event => {
@@ -69,7 +70,7 @@ form.onsubmit = async event => {
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
             }
-        
+
         }
     };
 }
@@ -85,16 +86,16 @@ function empty(element) {
 }
 
 
-function importResults (json)  {
+function importResults(json) {
 
-       for (let hit of json.hits) {
-   
-           let img = document.createElement('img');
-           img.src = hit.webformatURL;
-           let li = document.createElement('li');
-   
-           li.appendChild(img);
-           imageList.appendChild(li);
-        }
-   
+    for (let hit of json.hits) {
+
+        let img = document.createElement('img');
+        img.src = hit.webformatURL;
+        let li = document.createElement('li');
+
+        li.appendChild(img);
+        imageList.appendChild(li);
+    }
+
 }
