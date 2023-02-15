@@ -10,9 +10,9 @@ form.onsubmit = async event => {
     let color = form.color.value;
     let pageNr = 1;
     
-    /*
-    empty(imagelist);
-    */
+
+    empty(imageList);
+
 
     let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10" + "&page=" + pageNr;
 
@@ -97,7 +97,7 @@ form.onsubmit = async event => {
 }
 
 function createGallery() {
-    
+
 }
 
 function empty(element) {
