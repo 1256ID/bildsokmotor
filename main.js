@@ -5,21 +5,10 @@ let buttons = document.querySelector('.navButtons');
 form.onsubmit = async event => {
     event.preventDefault();
 
-   
-    
-
     let search = form.search.value; 
-    
-  
-    
-    
-    
-    
+     
     let color = form.color.value;
     let pageNr = 1;
-    
-
-
     
     /*
     empty(imagelist);
@@ -33,7 +22,7 @@ form.onsubmit = async event => {
     for (let hit of json.hits) {
 
         let img = document.createElement('img');
-        img.src = hit.previewURL;
+        img.src = hit.webformatURL;
         let li = document.createElement('li');
 
         li.appendChild(img);
@@ -43,7 +32,6 @@ form.onsubmit = async event => {
     imageList.append(id, preview);
 
     
-
     form.search.value = "";
     form.color.value = "";
 
@@ -74,7 +62,7 @@ form.onsubmit = async event => {
             for (let hit of json.hits) {
 
                 let img = document.createElement('img');
-                img.src = hit.previewURL;
+                img.src = hit.webformatURL;
                 let li = document.createElement('li');
         
                 li.appendChild(img);
@@ -97,7 +85,7 @@ form.onsubmit = async event => {
             for (let hit of json.hits) {
 
                 let img = document.createElement('img');
-                img.src = hit.previewURL;
+                img.src = hit.webformatURL;
                 let li = document.createElement('li');
         
                 li.appendChild(img);
