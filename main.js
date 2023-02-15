@@ -19,19 +19,8 @@ form.onsubmit = async event => {
     let response = await fetch(url);
     let json = await response.json();
 
-    for (let hit of json.hits) {
+    importResults(json);
 
-        let img = document.createElement('img');
-        img.src = hit.webformatURL;
-        let li = document.createElement('li');
-
-        li.appendChild(img);
-        imageList.appendChild(li);
-    }
-
-    imageList.append(id, preview);
-
-    
     form.search.value = "";
     form.color.value = "";
 
@@ -59,15 +48,7 @@ form.onsubmit = async event => {
             let response = await fetch(url);
             let json = await response.json();
 
-            for (let hit of json.hits) {
-
-                let img = document.createElement('img');
-                img.src = hit.webformatURL;
-                let li = document.createElement('li');
-        
-                li.appendChild(img);
-                imageList.appendChild(li);
-            }
+            importResults(json);
         
         };
 
@@ -82,15 +63,7 @@ form.onsubmit = async event => {
             let response = await fetch(url);
             let json = await response.json();
 
-            for (let hit of json.hits) {
-
-                let img = document.createElement('img');
-                img.src = hit.webformatURL;
-                let li = document.createElement('li');
-        
-                li.appendChild(img);
-                imageList.appendChild(li);
-            }
+            importResults(json);
         
         }
     };
@@ -107,3 +80,16 @@ function empty(element) {
 }
 
 
+function importResults (json)  {
+
+       for (let hit of json.hits) {
+   
+           let img = document.createElement('img');
+           img.src = hit.webformatURL;
+           let li = document.createElement('li');
+   
+           li.appendChild(img);
+           imageList.appendChild(li);
+       }
+   
+   }
