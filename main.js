@@ -12,26 +12,15 @@ form.onsubmit = async event => {
     
 
     empty(imageList);
-
+    empty(buttons);
 
     let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10" + "&page=" + pageNr;
 
     let response = await fetch(url);
     let json = await response.json();
 
-    for (let hit of json.hits) {
+    importResults(json);
 
-        let img = document.createElement('img');
-        img.src = hit.webformatURL;
-        let li = document.createElement('li');
-
-        li.appendChild(img);
-        imageList.appendChild(li);
-    }
-
-    imageList.append(id, preview);
-
-    
     form.search.value = "";
     form.color.value = "";
 
@@ -60,16 +49,7 @@ form.onsubmit = async event => {
             let response = await fetch(url);
             let json = await response.json();
 
-            for (let hit of json.hits) {
-
-                let img = document.createElement('img');
-                img.src = hit.webformatURL;
-                let li = document.createElement('li');
-        
-                li.appendChild(img);
-                imageList.appendChild(li);
-            }
-            navButtonPrevious.disabled = false;
+            importResults(json);
         
         };
 
@@ -84,15 +64,7 @@ form.onsubmit = async event => {
             let response = await fetch(url);
             let json = await response.json();
 
-            for (let hit of json.hits) {
-
-                let img = document.createElement('img');
-                img.src = hit.webformatURL;
-                let li = document.createElement('li');
-        
-                li.appendChild(img);
-                imageList.appendChild(li);
-            }
+            importResults(json);
 
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
@@ -110,4 +82,19 @@ function empty(element) {
     while (element.firstElementChild) {
         element.firstElementChild.remove();
     }
+}
+
+
+function importResults (json)  {
+
+       for (let hit of json.hits) {
+   
+           let img = document.createElement('img');
+           img.src = hit.webformatURL;
+           let li = document.createElement('li');
+   
+           li.appendChild(img);
+           imageList.appendChild(li);
+        }
+   
 }
