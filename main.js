@@ -1,6 +1,6 @@
 let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
-let buttons = document.querySelector('.navButtons');
+let buttons = document.querySelector('navButtons');
 
 form.onsubmit = async event => {
     event.preventDefault();
@@ -28,8 +28,8 @@ form.onsubmit = async event => {
 
     if (nextPage === true) {
 
-        let navButtonPrevious = document.createElement('button');
-        let navButtonNext = document.createElement('button');
+        let navButtonPrevious = document.getElementsByClassName('previous');
+        let navButtonNext = document.getElementsByClassName('next');
 
         navButtonPrevious.textContent = "Previous Page";
         navButtonNext.textContent = "Next page";
@@ -90,6 +90,6 @@ function importResults (json)  {
    
            li.appendChild(img);
            imageList.appendChild(li);
-       }
+        }
    
-   }
+}
