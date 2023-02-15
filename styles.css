@@ -1,8 +1,13 @@
-body {
+html {
     background-image: url(media/photographer.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-color: black;
+}
+
+
+body {
+  
 }
 
 @media (max-width: 700px) {
@@ -32,8 +37,27 @@ body, input, select, option, button {
     font-size: 24px;
 }
 
-.objects {
+.main {
     display:grid;
-    grid-template-columns: a b;
-    grid-template-rows: d c / 1fr 2fr;
+    grid-template-columns: repeat (5, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-top:2fr;
+    overflow: hidden;
+  }
+
+
+li {
+    float:left;
+}
+
+
+
+
+
+
