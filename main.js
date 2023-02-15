@@ -1,6 +1,6 @@
 let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
-let buttons = document.querySelector('navButtons');
+let buttons = document.querySelector('.navButtons');
 
 form.onsubmit = async event => {
     event.preventDefault();
@@ -28,8 +28,8 @@ form.onsubmit = async event => {
 
     if (nextPage === true) {
 
-        let navButtonPrevious = document.getElementsByClassName('previous');
-        let navButtonNext = document.getElementsByClassName('next');
+        let navButtonPrevious = document.createElement('button');
+        let navButtonNext = document.createElement('button');
 
         navButtonPrevious.textContent = "Previous Page";
         navButtonNext.textContent = "Next page";
