@@ -65,8 +65,9 @@ img:hover {
     }
 
     ul {
-       
-        grid-auto-flow:column;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow:row;
+        
     }
 
     li {
