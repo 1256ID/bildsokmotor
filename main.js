@@ -24,11 +24,7 @@ form.onsubmit = async event => {
 
     nextPage = true;
 
-    let perPage = 10;
 
-    if (json.hits.length < perPage) {
-        navButtonNext.disabled = true;
-      }
 
     if (nextPage === true) {
 
@@ -41,6 +37,12 @@ form.onsubmit = async event => {
         buttons.appendChild(navButtonPrevious);
         buttons.appendChild(navButtonNext);
         navButtonPrevious.disabled = true;
+
+        let perPage = 10;
+
+        if (json.hits.length < perPage) {
+            navButtonNext.disabled = true;
+        }
 
         navButtonNext.onclick = async event => {
             event.preventDefault();
@@ -76,7 +78,7 @@ form.onsubmit = async event => {
 
             if (json.hits.length < perPage) {
                 navButtonNext.disabled = true;
-              }
+            }
 
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
