@@ -111,9 +111,14 @@ function importResults(json) {
         li.appendChild(img);
         imageList.appendChild(li);
 
+        let user = document.createElement('div');
+        user.className = 'user-line';
+        user.textContent = hit.user;
+        li.appendChild(user);
+        
         let info = document.createElement('div');
         info.className = 'info-line';
-        info.textContent = hit.user + hit.tags;
+        info.textContent = hit.tags;
         li.appendChild(info);
     }
 
