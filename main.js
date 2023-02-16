@@ -111,8 +111,9 @@ function importResults(json) {
 
         let info = document.createElement('div');
         info.className = 'info-line';
-        info.textContent = hit.user + hit.tags;
+        info.textContent = 'Author: ' + hit.user + ' Tags: ' + hit.tags;
         li.appendChild(info);
+        
     }
 
 }
