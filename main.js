@@ -97,6 +97,11 @@ function importResults(json) {
 
         li.appendChild(img);
         imageList.appendChild(li);
+
+        let info = document. createElement('div');
+        info.className = 'info-line';
+        info.textContent = hit.user + hit.tags;
+        li.appendChild(info);
     }
 
 }
