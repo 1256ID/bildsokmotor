@@ -12,7 +12,7 @@ form.onsubmit = async event => {
     empty(imageList);
     empty(buttons);
 
-    let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10" + "&page=" + pageNr;
+    let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + search + "&colors=" + color + "&per_page=10" + "&page=" + pageNr;
 
     let response = await fetch(url);
     let json = await response.json();
@@ -24,11 +24,7 @@ form.onsubmit = async event => {
 
     nextPage = true;
 
-    let perPage = 10;
 
-    if (json.hits.length < perPage) {
-        navButtonNext.disabled = true;
-      }
 
     if (nextPage === true) {
 
@@ -41,6 +37,12 @@ form.onsubmit = async event => {
         buttons.appendChild(navButtonPrevious);
         buttons.appendChild(navButtonNext);
         navButtonPrevious.disabled = true;
+
+        let perPage = 10;
+
+        if (json.hits.length < perPage) {
+            navButtonNext.disabled = true;
+        }
 
         navButtonNext.onclick = async event => {
             event.preventDefault();
@@ -76,7 +78,7 @@ form.onsubmit = async event => {
 
             if (json.hits.length < perPage) {
                 navButtonNext.disabled = true;
-              }
+            }
 
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
@@ -109,9 +111,14 @@ function importResults(json) {
         li.appendChild(img);
         imageList.appendChild(li);
 
+        let user = document.createElement('div');
+        user.className = 'user-line';
+        user.textContent = hit.user;
+        li.appendChild(user);
+        
         let info = document.createElement('div');
         info.className = 'info-line';
-        info.textContent = 'Author: ' + hit.user + ' Tags: ' + hit.tags;
+        info.textContent = hit.tags;
         li.appendChild(info);
         
     }
