@@ -92,6 +92,7 @@ function importResults(json) {
 
         let img = document.createElement('img');
         img.src = hit.webformatURL;
+        img.alt = hit.tags;
         let li = document.createElement('li');
 
         li.appendChild(img);
