@@ -6,10 +6,8 @@ form.onsubmit = async event => {
     event.preventDefault();
 
     let search = form.search.value;
-
     let color = form.color.value;
     let pageNr = 1;
-
 
     empty(imageList);
     empty(buttons);
@@ -25,6 +23,12 @@ form.onsubmit = async event => {
     form.color.value = "";
 
     nextPage = true;
+
+    let perPage = 10;
+
+    if (json.hits.length < perPage) {
+        navButtonNext.disabled = true;
+      }
 
     if (nextPage === true) {
 
@@ -52,6 +56,7 @@ form.onsubmit = async event => {
             importResults(json);
 
             navButtonPrevious.disabled = false;
+
         };
 
         navButtonPrevious.onclick = async event => {
@@ -66,6 +71,12 @@ form.onsubmit = async event => {
             let json = await response.json();
 
             importResults(json);
+
+            let perPage = 10;
+
+            if (json.hits.length < perPage) {
+                navButtonNext.disabled = true;
+              }
 
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
@@ -98,7 +109,7 @@ function importResults(json) {
         li.appendChild(img);
         imageList.appendChild(li);
 
-        let info = document. createElement('div');
+        let info = document.createElement('div');
         info.className = 'info-line';
         info.textContent = hit.user + hit.tags;
         li.appendChild(info);
