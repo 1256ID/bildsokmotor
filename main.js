@@ -2,6 +2,7 @@ let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
 let buttons = document.querySelector('.navButtons');
 
+
 form.onsubmit = async event => {
     event.preventDefault();
 
@@ -17,7 +18,7 @@ form.onsubmit = async event => {
     let response = await fetch(url);
     let json = await response.json();
 
-    importResults(json);
+    importResults(json); 
 
     form.search.value = "";
     form.color.value = "";
@@ -38,11 +39,6 @@ form.onsubmit = async event => {
         buttons.appendChild(navButtonNext);
         navButtonPrevious.disabled = true;
 
-        let perPage = 10;
-
-        if (json.hits.length < perPage) {
-            navButtonNext.disabled = true;
-        }
 
         navButtonNext.onclick = async event => {
             event.preventDefault();
@@ -50,12 +46,15 @@ form.onsubmit = async event => {
             empty(imageList);
 
             pageNr++;
-            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10&page=" + pageNr;
+            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + search + "&colors=" + color + "&per_page=10" + "&page=" + pageNr;
 
             let response = await fetch(url);
             let json = await response.json();
 
             importResults(json);
+
+            
+           
 
             navButtonPrevious.disabled = false;
 
@@ -67,18 +66,17 @@ form.onsubmit = async event => {
 
             empty(imageList);
             pageNr--;
-            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10&page=" + pageNr;
+            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + search + "&colors=" + color + "&per_page=10" + "&page=" + pageNr;
+
 
             let response = await fetch(url);
             let json = await response.json();
 
             importResults(json);
 
-            let perPage = 10;
+            
 
-            if (json.hits.length < perPage) {
-                navButtonNext.disabled = true;
-            }
+            
 
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
@@ -123,4 +121,18 @@ function importResults(json) {
         
     }
 
+}
+
+
+function getTotalPages(json) {
+
+   
+    let totalHits = json.totalHits;
+
+    
+    let totalPages = totalHits / 10;
+
+    let roundedAnswer = Math.ceil(totalPages);
+
+    return roundedAnswer;
 }
