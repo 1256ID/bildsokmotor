@@ -17,14 +17,20 @@ form.onsubmit = async event => {
     let response = await fetch(url);
     let json = await response.json();
 
+    let result = json.hits;
+    let totalHits = json.totalHits;
+    let totalPages = Math.ceil(totalHits / result.length);
+
     importResults(json);
+
+    // let result = g(json);
+
+    // console.log(result);
 
     form.search.value = "";
     form.color.value = "";
 
     nextPage = true;
-
-
 
     if (nextPage === true) {
 
@@ -38,9 +44,7 @@ form.onsubmit = async event => {
         buttons.appendChild(navButtonNext);
         navButtonPrevious.disabled = true;
 
-        let perPage = 10;
-
-        if (json.hits.length < perPage) {
+        if (pageNr === totalPages) {
             navButtonNext.disabled = true;
         }
 
@@ -50,7 +54,7 @@ form.onsubmit = async event => {
             empty(imageList);
 
             pageNr++;
-            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10&page=" + pageNr;
+            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + search + "&colors=" + color + "&per_page=10" + "&page=" + pageNr;
 
             let response = await fetch(url);
             let json = await response.json();
@@ -59,37 +63,30 @@ form.onsubmit = async event => {
 
             navButtonPrevious.disabled = false;
 
+            if (pageNr === totalPages) {
+                navButtonNext.disabled = true;
+            }
         };
 
         navButtonPrevious.onclick = async event => {
-
             event.preventDefault();
 
             empty(imageList);
             pageNr--;
-            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + color + "+" + search + "&per_page=10&page=" + pageNr;
+            let url = "https://pixabay.com/api/?key=33470155-a1510963a99de7f2888f9d89f&q=" + search + "&colors=" + color + "&per_page=10" + "&page=" + pageNr;
 
             let response = await fetch(url);
             let json = await response.json();
 
             importResults(json);
 
-            let perPage = 10;
-
-            if (json.hits.length < perPage) {
-                navButtonNext.disabled = true;
-            }
-
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
             }
 
+            navButtonNext.disabled = false;
         }
     };
-}
-
-function createGallery() {
-
 }
 
 function empty(element) {
@@ -97,7 +94,6 @@ function empty(element) {
         element.firstElementChild.remove();
     }
 }
-
 
 function importResults(json) {
 
@@ -115,12 +111,31 @@ function importResults(json) {
         user.className = 'user-line';
         user.textContent = hit.user;
         li.appendChild(user);
-        
+
         let info = document.createElement('div');
         info.className = 'info-line';
         info.textContent = hit.tags;
         li.appendChild(info);
-        
+
     }
+
+}
+
+
+function g(json) {
+
+
+    let totalHits = json.total;
+
+    /*
+    let totalPages = totalHits / 10;
+
+    let roundedAnswer = Math.ceil(totalPages);
+
+    return roundedAnswer;
+
+    */
+
+    return totalHits;
 
 }
