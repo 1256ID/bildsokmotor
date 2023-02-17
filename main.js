@@ -2,7 +2,6 @@ let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
 let buttons = document.querySelector('.navButtons');
 
-
 form.onsubmit = async event => {
     event.preventDefault();
 
@@ -24,10 +23,6 @@ form.onsubmit = async event => {
 
     importResults(json);
 
-    // let result = g(json);
-
-    // console.log(result);
-
     form.search.value = "";
     form.color.value = "";
 
@@ -43,6 +38,7 @@ form.onsubmit = async event => {
 
         buttons.appendChild(navButtonPrevious);
         buttons.appendChild(navButtonNext);
+        
         navButtonPrevious.disabled = true;
 
         if (pageNr === totalPages) {
@@ -61,9 +57,6 @@ form.onsubmit = async event => {
             let json = await response.json();
 
             importResults(json);
-
-            
-           
 
             navButtonPrevious.disabled = false;
 
@@ -84,9 +77,7 @@ form.onsubmit = async event => {
 
             importResults(json);
 
-            let perPage = 10;
-
-            if (json.hits.length < perPage) {
+            if (pageNr === totalPages) {
                 navButtonNext.disabled = true;
             }
 
@@ -139,56 +130,4 @@ function importResults(json) {
 
     }
 
-}
-
-
-function g(json) {
-
-
-    let totalHits = json.total;
-
-    /*
-    let totalPages = totalHits / 10;
-
-    let roundedAnswer = Math.ceil(totalPages);
-
-    return roundedAnswer;
-
-    */
-
-    return totalHits;
-
-}
-
-
-function g(json) {
-
-
-    let totalHits = json.total;
-
-    /*
-    let totalPages = totalHits / 10;
-
-    let roundedAnswer = Math.ceil(totalPages);
-
-    return roundedAnswer;
-
-    */
-
-    return totalHits;
-
-}
-
-
-function getTotalPages(json) {
-
-   
-    let totalHits = json.totalHits;
-
-    
-    let totalPages = totalHits / 10;
-
-    let roundedAnswer = Math.ceil(totalPages);
-
-    return roundedAnswer;
 }
