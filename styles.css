@@ -185,23 +185,24 @@ li {
 }
 
 .user-line {
-    position: absolute;
-    bottom: 30px;
-    left: 5px;
-    margin: 8px;
-    font-size: medium;
+    /* position: absolute; */
+    /* bottom: 4px; */
+    /* left: 1px; */
+    /* margin: 8px; */
+    font-size: small;
     color: white;
     text-shadow: 0 0 5px black;
+
 }
 
 .info-line {
-    position: absolute;
-    bottom: 4px;
-    left: 5px;
-    margin: 8px;
-    font-size: medium;
+    /* position: absolute; */
+    /* bottom: 4px; */
+    /* left: 5px; */
+    /* margin: 8px; */
+    font-size: small;
     text-shadow: 2px 2px 5px black;
-    text-align: left;
+    /* text-align: left; */
 }
 
 .navButtons {
