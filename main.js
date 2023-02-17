@@ -102,9 +102,18 @@ function importResults(json) {
         let img = document.createElement('img');
         img.src = hit.webformatURL;
         img.alt = hit.tags;
-        let li = document.createElement('li');
 
-        li.appendChild(img);
+        let link = document.createElement('a');
+        link.href = hit.largeImageURL;
+        link.appendChild(img);
+
+        link.onclick = function (event) {
+            event.preventDefault();
+            window.open(this.href, '_blank');
+        }
+
+        let li = document.createElement('li');
+        li.appendChild(link);
         imageList.appendChild(li);
 
         let user = document.createElement('div');
@@ -116,6 +125,7 @@ function importResults(json) {
         info.className = 'info-line';
         info.textContent = hit.tags;
         li.appendChild(info);
+
 
     }
 
