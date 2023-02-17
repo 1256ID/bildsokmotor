@@ -2,6 +2,7 @@ let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
 let buttons = document.querySelector('.navButtons');
 
+
 form.onsubmit = async event => {
     event.preventDefault();
 
@@ -61,6 +62,9 @@ form.onsubmit = async event => {
 
             importResults(json);
 
+            
+           
+
             navButtonPrevious.disabled = false;
 
             if (pageNr === totalPages) {
@@ -79,6 +83,12 @@ form.onsubmit = async event => {
             let json = await response.json();
 
             importResults(json);
+
+            let perPage = 10;
+
+            if (json.hits.length < perPage) {
+                navButtonNext.disabled = true;
+            }
 
             if (pageNr < 2) {
                 navButtonPrevious.disabled = true;
@@ -148,4 +158,37 @@ function g(json) {
 
     return totalHits;
 
+}
+
+
+function g(json) {
+
+
+    let totalHits = json.total;
+
+    /*
+    let totalPages = totalHits / 10;
+
+    let roundedAnswer = Math.ceil(totalPages);
+
+    return roundedAnswer;
+
+    */
+
+    return totalHits;
+
+}
+
+
+function getTotalPages(json) {
+
+   
+    let totalHits = json.totalHits;
+
+    
+    let totalPages = totalHits / 10;
+
+    let roundedAnswer = Math.ceil(totalPages);
+
+    return roundedAnswer;
 }
