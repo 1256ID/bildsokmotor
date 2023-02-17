@@ -132,42 +132,7 @@ function importResults(json) {
 }
 
 
-function g(json) {
 
-
-    let totalHits = json.total;
-
-    /*
-    let totalPages = totalHits / 10;
-
-    let roundedAnswer = Math.ceil(totalPages);
-
-    return roundedAnswer;
-
-    */
-
-    return totalHits;
-
-}
-
-
-function g(json) {
-
-
-    let totalHits = json.total;
-
-    /*
-    let totalPages = totalHits / 10;
-
-    let roundedAnswer = Math.ceil(totalPages);
-
-    return roundedAnswer;
-
-    */
-
-    return totalHits;
-
-}
 
 
 function getTotalPages(json) {
