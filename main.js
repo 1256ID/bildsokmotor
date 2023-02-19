@@ -38,7 +38,7 @@ form.onsubmit = async event => {
 
         buttons.appendChild(navButtonPrevious);
         buttons.appendChild(navButtonNext);
-        
+
         navButtonPrevious.disabled = true;
 
         if (pageNr === totalPages) {
