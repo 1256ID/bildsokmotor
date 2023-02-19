@@ -2,6 +2,7 @@ let form = document.querySelector('form');
 let imageList = document.querySelector('#pictures');
 let buttons = document.querySelector('.navButtons');
 
+
 form.onsubmit = async event => {
     event.preventDefault();
 
@@ -23,6 +24,10 @@ form.onsubmit = async event => {
 
     importResults(json);
 
+    // let result = g(json);
+
+    // console.log(result);
+
     form.search.value = "";
     form.color.value = "";
 
@@ -38,7 +43,6 @@ form.onsubmit = async event => {
 
         buttons.appendChild(navButtonPrevious);
         buttons.appendChild(navButtonNext);
-        
         navButtonPrevious.disabled = true;
 
         if (pageNr === totalPages) {
@@ -57,6 +61,9 @@ form.onsubmit = async event => {
             let json = await response.json();
 
             importResults(json);
+
+            
+           
 
             navButtonPrevious.disabled = false;
 
@@ -77,7 +84,9 @@ form.onsubmit = async event => {
 
             importResults(json);
 
-            if (pageNr === totalPages) {
+            let perPage = 10;
+
+            if (json.hits.length < perPage) {
                 navButtonNext.disabled = true;
             }
 
@@ -103,18 +112,9 @@ function importResults(json) {
         let img = document.createElement('img');
         img.src = hit.webformatURL;
         img.alt = hit.tags;
-
-        let link = document.createElement('a');
-        link.href = hit.largeImageURL;
-        link.appendChild(img);
-
-        link.onclick = function (event) {
-            event.preventDefault();
-            window.open(this.href, '_blank');
-        }
-
         let li = document.createElement('li');
-        li.appendChild(link);
+
+        li.appendChild(img);
         imageList.appendChild(li);
 
         let user = document.createElement('div');
@@ -127,7 +127,23 @@ function importResults(json) {
         info.textContent = hit.tags;
         li.appendChild(info);
 
-
     }
 
+}
+
+
+
+
+
+function getTotalPages(json) {
+
+   
+    let totalHits = json.totalHits;
+
+    
+    let totalPages = totalHits / 10;
+
+    let roundedAnswer = Math.ceil(totalPages);
+
+    return roundedAnswer;
 }
